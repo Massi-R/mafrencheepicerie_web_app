@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Page d'inscription
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="container-fluid d-grid min-vh-100 w-100">
+        <h1 class="text-center mt-5">Inscription</h1>
+        <div class="row justify-content-center">
+            <div class="col-4">
+                {{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.firstName, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.lastname, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.email, 'Adresse Email', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                {{ form_widget(form.submit, {'label': 'S\'inscrire', 'attr': {'class': 'btn btn-primary btn-lg w-100'}}) }}
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

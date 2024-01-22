@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos produits - Ma French Epicerie !{% endblock %}
+
+{% block content %}
+
+    <div class="tab-content">
+        <h1 class="text-center m-5 p-3">Nos produits frais</h1>
+        <div class="container">
+            <div id="tab-1" class="tab-pane fade show p-0 active">
+                <div class="row g-4">
+                    {% for product in products %}
+                        <div class="col-md-6 col-lg-3">
+                            <div class="rounded position-relative fruite-item">
+                                <div class="fruite-img">
+                                    <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}"
+                                         class="img-fluid w-100 rounded-top">
+                                </div>
+                                <!--<div class="text-white bg-warning px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>-->
+                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                    <h4>{{ product.name }}</h4>
+                                    <p>{{ product.description }}</p>
+                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                        <p class="text-dark fs-5 fw-bold mb-0">€2.50 / kg</p>
+                                        <a href="{{ path('app_add_cart', {'id': product.id}) }}"
+                                           class="btn border border-secondary rounded-pill px-3 bg-success text-white">
+                                            <i class="bi-cart-fill me-1 text-white fa fa-shopping-bag m-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
