@@ -5,7 +5,8 @@
 {% block content %}
 <div class="container min-vh-100 d-flex flex-column justify-content-between">
     <p>Bienvenue {{ app.user.firstName }} dans votre éspace My French Epicery !</p> <br />
-    <a href="{{ path('app_change_password') }}"Modifier mon mot de passe></a>
+    <a href="{{ path('app_change_password') }}">Modifier mon mot de passe</a>
+    <a href="{{ path('app_account_address') }}">Gérer mes addresses</a>
 
 </div>
 

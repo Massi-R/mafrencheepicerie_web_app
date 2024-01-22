@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer mes addresse - Ma French Epicerie !{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h2 class="text-center mt-5">Ajouter une addresse</h2>
+    <a href="{{ path('app_account_address') }}">Retour</a>
+    <br>
+    <form action="{{ path('app_account_address_add') }}" method="post">
+        {{ form(form) }}
+    </form>
+</div>
+
+    <!--TODO: Ajouter mes adresses-->
+    <!--TODO: Gérer mes commandes -->
+
+{% endblock %}
+
