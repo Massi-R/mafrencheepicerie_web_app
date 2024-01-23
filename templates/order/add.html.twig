@@ -13,25 +13,44 @@
                     <div class="card-body">
                         <h5 class="card-title">Informations de la commande</h5>
                         <div class="list-group">
-                            {% for cartItem in cart %}
-                                <div class="list-group-item">
+                            {% set totalCartPrice = null %}
+                            {% for key, cartItem in cart %}
+                                <div class="list-group-item" {% if key > 0 %} {% endif %}>
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-1">{{ cartItem.product.name }}</h6>
-                                        <span>{{ cartItem.product.price }} €</span>
+                                        <h6 class="mb-1">Produit : {{ cartItem.product.name }}</h6>
                                     </div>
-                                    <p class="mb-1">Quantité: {{ cartItem.quantity['quantity'] }}</p>
+                                    <p class="mb-1">Prix unitaire : {{ cartItem.product.price }} €</p>
+                                    <p class="mb-1">Quantité : {{ cartItem.quantity['quantity'] }}</p>
+                                    <p class="mb-1">Prix des produits : {{ (cartItem.product.price * cartItem.quantity['quantity']) }} €</p>
                                 </div>
+                                {% set totalCartPrice = totalCartPrice + cartItem.quantity['quantity']* cartItem.product.price %}
                             {% endfor %}
                         </div>
                     </div>
                 </div>
 
-                <div class="card mt-4">
+                <div class="card mt-4 row">
                     <div class="card-body">
                         <h5 class="card-title">Informations de livraison</h5>
-                        <p class="card-text">
-                            <!-- Ajoutez les informations de livraison ici -->
+                    <div class="form-check">
+                       <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            J'accepte les conditions générales de vente
+                        </label>-->
+                    </div>
+                        <div class="form-check">
+                        <p class="card-text"> Mon adresse de livraison :<br> {{ delivery | raw}}
+                            {% if carrier is defined %}
+                            <h6>Nom du transporteur :<span class="">{{ carrier.name }}</span></h6>
+                        <p>Prix du transporteur : {{ (carrier.price) | number_format(2, ',', '.') }} €</p>
+                        <!-- Ajoutez les informations de livraison supplémentaires ici -->
+                        {% endif %}
+                        <p>Sous-total : {{ (totalCartPrice) | number_format(2, ',', '.') }} €</p>
+                        <p>Livraison : {{ (carrier.price) | number_format(2, ',', '.') }} €</p>
+                        <p>Total : {{ ((totalCartPrice) + carrier.price) | number_format(2, ',', '.') }} €</p>
                         </p>
+                    </div>
+                        <a href="" class="btn btn-success btn-block mt-3">Payer {{ ((totalCartPrice) + carrier.price) | number_format(2, ',', '.') }} €</a>
                     </div>
                 </div>
             </div>

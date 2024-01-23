@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Cart\Cart;
 use App\Entity\Product;
+use App\Entity\Category;
 use App\Entity\Order;
 use App\Entity\OrderDetails;
 use App\Form\OrderType;
@@ -52,6 +53,7 @@ class OrderController extends AbstractController
             'user' => $this->getUser(),
         ]);
 
+        $carriers = null;
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -92,13 +94,16 @@ class OrderController extends AbstractController
 
                 $this->entityManager->persist($orderDetails);
             }
-            $this->entityManager->flush();
-        }
-
+               $this->entityManager->flush();
         return $this->render('order/add.html.twig', [
 
-            'cart' => $cart->getFull()
+            'cart' => $cart->getFull(),
+            'carrier' => $carriers,
+            'delivery' => $delivery_content
         ]);
+        }
+        return $this->redirectToRoute('app_cart');
+
 
     }
 }

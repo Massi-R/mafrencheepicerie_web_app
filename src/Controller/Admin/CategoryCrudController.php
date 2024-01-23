@@ -22,10 +22,10 @@ class CategoryCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name'),
+            TextField::new('name', 'Categories'),
             BooleanField::new('active'),
-            DateTimeField::new('updatedAt')->hideOnForm(),
-            DateTimeField::new('createdAt')->hideOnForm(),
+            DateTimeField::new('updatedAt', 'Mise à jour le')->hideOnForm(),
+            DateTimeField::new('createdAt', 'Crée le')->hideOnForm(),
         ];
     }
 

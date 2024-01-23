@@ -49,4 +49,9 @@ class ProductRepository extends ServiceEntityRepository
     {
         return $this->findOneBy(['id' => $id]);
     }
+
+    public function findByIsBest(int $int)
+    {
+        return $this->findBy(['isBest' => $int]);
+    }
 }

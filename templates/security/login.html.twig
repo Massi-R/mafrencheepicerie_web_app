@@ -25,10 +25,17 @@
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
-
+<div class="d-flex justify-content-between">
     <button class="btn btn-lg btn-primary rounded-pill mt-5 w-50" type="submit">
         Se connecter
     </button>
+        <div>
+            <a class="d-flex justify-content-end" href="{{ path('app_register') }}">
+                Créer un compte
+            </a>
+        </div>
+
+</div>
     </div>
     {% endblock %}
     {% block footer %}

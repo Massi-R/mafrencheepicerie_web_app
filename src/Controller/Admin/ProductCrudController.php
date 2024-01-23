@@ -6,6 +6,7 @@ use App\Entity\Product;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
@@ -36,19 +37,20 @@ class ProductCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name'),
+            TextField::new('name', 'Nom produit'),
             SlugField::new('slug')->setTargetFieldName('name'),
 
-            TextEditorField::new('description'),
-            MoneyField::new('price')->setCurrency('EUR'),
-            AssociationField::new('category'),
+            TextEditorField::new('description', 'Déscription'),
+            BooleanField::new('isBest'),
+            MoneyField::new('price', 'Prix')->setCurrency('EUR'),
+            AssociationField::new('category', 'Categories produits'),
             ImageField::new('illustration')
                 ->setBasePath('uploads/')
                 ->setUploadDir('public/uploads')
-                ->setUploadFilenamePattern('[randomhash].[extension]')
-                ->setRequired(false),
-            TextField::new('subtitle'),
-            AssociationField::new('category'),
+                ->setFormType(FileType::class)
+                ->setFormTypeOptions(['mapped' => false, 'required' => false]),
+            TextField::new('subtitle', 'Sous-titre'),
+            AssociationField::new('category', 'Categories'),
         ];
     }
 

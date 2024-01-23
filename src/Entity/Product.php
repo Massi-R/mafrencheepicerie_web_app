@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 //use vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -43,6 +45,9 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     public ?Category $category = null;
 
+    #[ORM\Column]
+    private ?bool $isBest = null;
+
 
     public function getName(): ?string
     {
@@ -76,6 +81,23 @@ class Product
     public function setIllustration(?string $illustration): static
     {
         $this->illustration = $illustration;
+
+        return $this;
+    }
+    private $illustrationFile;
+
+    public function getIllustrationFile(): ?UploadedFile
+    {
+        return $this->illustrationFile;
+    }
+
+    public function setIllustrationFile(UploadedFile $illustrationFile): self
+    {
+        $this->illustrationFile = $illustrationFile;
+
+        // Générez un nom de fichier unique
+        $filename = md5(uniqid()) . '.' . $illustrationFile->guessExtension();
+        $this->illustration = $filename;
 
         return $this;
     }
@@ -126,6 +148,18 @@ class Product
     public function setSlug(string $slugify): static
     {
         $this->slug = $slugify;
+
+        return $this;
+    }
+
+    public function isIsBest(): ?bool
+    {
+        return $this->isBest;
+    }
+
+    public function setIsBest(bool $isBest): static
+    {
+        $this->isBest = $isBest;
 
         return $this;
     }

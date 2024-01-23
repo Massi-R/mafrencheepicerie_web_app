@@ -8,6 +8,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ *
+ */
 class Cart
 {
     private $session;
@@ -88,13 +91,16 @@ class Cart
     {
         $cart = $this->session->get('cart', []);
 
-        if (($cart[$id] > 1)) {
-            $cart[$id]--;
+        if (isset($cart[$id]) && $cart[$id]['quantity'] > 1) {
+            $cart[$id]['quantity']--;
+
         }else{
-            unset($cart[$id]);
+                unset($cart[$id]);
+
         }
 
         $this->session->set('cart', $cart);
     }
+
 }
 
