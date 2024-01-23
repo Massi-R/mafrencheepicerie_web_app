@@ -6,31 +6,36 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Category;
 use App\Entity\Product;
+use Jzonta\FakerRestaurant\Provider\en_US\Restaurant as RestaurantProvider;
 use Faker\Factory;
+use Faker\Generator;
 use Cocur\Slugify\Slugify;
 
 class ProductFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // Récupérer les catégories existantes depuis la base de données
         $categories = $manager->getRepository(Category::class)->findAll();
         $faker = Factory::create();
         $slugify = new Slugify();
 
+        // Créez une instance du faker spécifique à jzonta/faker-restaurant
+        $restaurantFaker = Factory::create();
+        $restaurantFaker->addProvider(new RestaurantProvider($restaurantFaker));
+
         foreach ($categories as $category) {
-            for ($i = 0; $i < 2; $i++) {
+            for ($i = 0; $i < 5; $i++) {
                 $product = new Product();
-                $product->setName($faker->unique()->word);
+
+                // Utilisez les méthodes spécifiques de jzonta/faker-restaurant
+                $productName = $restaurantFaker->foodName();
+                $product->setName($productName);
                 $product->setIllustration($faker->imageUrl());
-                // Utilisez la fonction de slugification si disponible
-                // $product->setSlug($slugify->slugify($product->getName()));
+                $product->setSlug($slugify->slugify($productName));
                 $product->setSubtitle($faker->sentence);
                 $product->setDescription($faker->paragraph);
-                // Utilisez mt_rand pour générer des nombres entiers aléatoires
-                $product->setPrice(mt_rand(100, 10000) / 100); // Prix entre 1 et 100
+                $product->setPrice($faker->randomFloat(2, 1, 100));
                 $product->setCategory($category);
-
 
                 $manager->persist($product);
             }

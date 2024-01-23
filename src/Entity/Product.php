@@ -107,9 +107,25 @@ class Product
         return $this;
     }
 
+    /**
+     * Get the price of the product.
+     *
+     * @return float|null
+     */
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
     public function setPrice(float $price)
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function setSlug(string $slugify): static
+    {
+        $this->slug = $slugify;
 
         return $this;
     }

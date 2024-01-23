@@ -14,6 +14,7 @@
         "doctrine/orm": "^2.17",
         "easycorp/easyadmin-bundle": "^4",
         "joppnet/jn_lighterbox": "^1.2",
+        "jzonta/faker-restaurant": "^2.0",
         "nitsan/ns-all-lightbox": "^12.0",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.25",

@@ -1,8 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nos produits - Ma French Epicerie !{% endblock %}
+{% block title %}
+    Nos produits - Ma French Epicerie !
+{% endblock %}
 
 {% block content %}
+    <style>
+        .fruite-item {
+            max-height: 600px; /* Ajustez la hauteur maximale selon vos besoins */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .fruite-item p {
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Nombre de lignes à afficher */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+
+        }
+    </style>
 
     <div class="tab-content">
         <h1 class="text-center m-5 p-3">Nos produits frais</h1>
@@ -16,7 +33,6 @@
                                     <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}"
                                          class="img-fluid w-100 rounded-top">
                                 </div>
-                                <!--<div class="text-white bg-warning px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>-->
                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                     <h4>{{ product.name }}</h4>
                                     <p>{{ product.description }}</p>
@@ -35,5 +51,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

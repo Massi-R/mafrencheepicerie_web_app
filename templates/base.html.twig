@@ -63,8 +63,8 @@
                         <li>
                             <hr class="dropdown-divider text-dark"/>
                         </li>
-                        <li><a class="dropdown-item text-dark" href="#!">Popular Items</a></li>
-                        <li><a class="dropdown-item text-dark" href="#!">New Arrivals</a></li>
+                        <li><a class="dropdown-item text-dark" href="#!">Produits à succés</a></li>
+                        <li><a class="dropdown-item text-dark" href="#!">Nouveau stock</a></li>
                     </ul>
                 </li>
             </ul>
@@ -104,10 +104,11 @@
             {% endif %}
             <form class="d-flex">
                 {% if app.request.attributes.get('_route') == 'app_home' %}
-                    <button class="btn btn-outline-warning text-white" type="submit">
+                    <a href="{{ path('app_cart') }}">
                         <i class="bi-cart-fill me-1 text-white fa fa-shopping-bag"></i>
+                    </a>
 
-                        <span class="badge bg-white text-dark ms-1 rounded-pill">0</span>
+                        <span class="badge bg-white text-dark ms-1 rounded-pill"></span>
                     </button>
                 {% endif %}
             </form>
@@ -138,8 +139,8 @@
                 <div class="row g-4">
                     <div class="">
                         <a href="#">
-                            <h1 class="text-warning mb-0">My French Epicery</h1>
-                            <p class="text-secondary mb-0">Produits frais</p>
+                            <h1 class="text-warning mb-0">Ma French Epicerie</h1>
+                            <p class="text-secondary mb-0">Produits frais 100% français</p>
                         </a>
                     </div>
                 </div>

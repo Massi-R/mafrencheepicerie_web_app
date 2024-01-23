@@ -1,20 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gérer mes addresse - Ma French Epicerie !{% endblock %}
-
-{% block content %}
-
-<div class="container">
-    <h2 class="text-center mt-5">Ajouter une addresse</h2>
-    <a href="{{ path('app_account_address') }}">Retour</a>
-    <br>
-    <form action="{{ path('app_account_address_add') }}" method="post">
-        {{ form(form) }}
-    </form>
-</div>
-
-    <!--TODO: Ajouter mes adresses-->
-    <!--TODO: Gérer mes commandes -->
-
+{% block title %}
+    Gérer mes adresses - Ma French Epicerie !
 {% endblock %}
 
+{% block content %}
+    <div class="container mt-5 min-vh-100 w-100">
+        <h2 class="text-center mb-4">Ajouter une adresse</h2>
+        <a href="{{ path('app_account_address') }}" class="d-block mb-4">&lt; Retour</a>
+
+        <form action="{{ path('app_account_address_add') }}" method="post" class="row g-3">
+            <div class="col-md-6">
+                {{ form_row(form.firstname, {'label': 'Prénom', 'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(form.lastname, {'label': 'Nom', 'attr': {'class': 'form-control mb-3'}}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.name, {'label': 'Nom de l\'adresse', 'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(form.address, {'label': 'Adresse', 'attr': {'class': 'form-control mb-3'}}) }}
+            </div>
+            <div class="col-12">
+                {{ form_row(form.company, {'label': 'Société', 'attr': {'class': 'form-control mb-3'}}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.city, {'label': 'Ville', 'attr': {'class': 'form-control mb-3'}}) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.postal, {'label': 'Code postal', 'attr': {'class': 'form-control mb-3'}}) }}
+            </div>
+            <div class="col-md-2">
+                {{ form_row(form.country, {'label': 'Pays', 'attr': {'class': 'form-control mb-3'}}) }}
+            </div>
+            <div class="col-12">
+                {{ form_row(form.phone, {'label': 'Numéro de téléphone', 'attr': {'class': 'form-control mb-3'}}) }}
+            </div>
+
+            <div class="col-12">
+                {{ form_row(form.submit, {'label': 'Ajouter l\'adresse', 'attr': {'class': 'btn btn-primary'}}) }}
+            </div>
+        </form>
+    </div>
+{% endblock %}

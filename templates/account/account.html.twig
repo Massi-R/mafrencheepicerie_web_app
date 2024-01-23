@@ -1,16 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon compte - My French Epicery !{% endblock %}
+{% block title %}
+    Mon compte - My French Epicery !
+{% endblock %}
 
 {% block content %}
-<div class="container min-vh-100 d-flex flex-column justify-content-between">
-    <p>Bienvenue {{ app.user.firstName }} dans votre éspace My French Epicery !</p> <br />
-    <a href="{{ path('app_change_password') }}">Modifier mon mot de passe</a>
-    <a href="{{ path('app_account_address') }}">Gérer mes addresses</a>
+    <div class="container min-vh-100 mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">Bienvenue, {{ app.user.firstName }} !</h2>
+            <div class="d-grid gap-2 d-md-flex">
+                <a href="{{ path('app_change_password') }}" class="btn btn-primary me-md-2">Modifier mon mot de passe</a>
+                <a href="{{ path('app_account_address') }}" class="btn btn-secondary">Gérer mes adresses</a>
+                <!-- Ajoutez d'autres liens et fonctionnalités au besoin -->
+            </div>
+        </div>
 
-</div>
-
-    <!--TODO: Ajouter mes adresses-->
-    <!--TODO: Gérer mes commandes -->
-
+        <div>
+            <p class="lead">Découvrez votre espace My French Epicery et profitez de nos services.</p>
+        </div>
+    </div>
 {% endblock %}

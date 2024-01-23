@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Récapitulatif de commande
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid d-grid min-vh-100 w-100">
+        <h1 class="text-center mt-5">Récapitulatif de commande</h1>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Informations de la commande</h5>
+                        <div class="list-group">
+                            {% for cartItem in cart %}
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">{{ cartItem.product.name }}</h6>
+                                        <span>{{ cartItem.product.price }} €</span>
+                                    </div>
+                                    <p class="mb-1">Quantité: {{ cartItem.quantity['quantity'] }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Informations de livraison</h5>
+                        <p class="card-text">
+                            <!-- Ajoutez les informations de livraison ici -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -169,6 +169,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/typo3fluid/fluid" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cocur/slugify" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jzonta/faker-restaurant" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
