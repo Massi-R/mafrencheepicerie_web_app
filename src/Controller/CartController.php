@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Cart\Cart;
+use App\Service\CartService;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,10 +21,9 @@ class CartController extends AbstractController
 
     #[Route('/mon-panier', name: 'app_cart')]
 
-    public function index(Cart $cart): Response
+    public function index(CartService $cart): Response
     {
 
-        //dd($cart->getFull());
         return $this->render('cart/index.html.twig', [
 
             'cart' => $cart->getFull()
@@ -32,7 +31,7 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart/add/{id}', name: 'app_add_cart')]
-    public function add(Cart $cart, int $id): Response
+    public function add(CartService $cart, int $id): Response
     {
         // Utilisez $cart pour ajouter le produit avec l'identifiant $id
         $cart->add($id);
@@ -41,7 +40,7 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart/remove/{id}', name: 'app_remove_cart')]
-    public function remove(Cart $cart): Response
+    public function remove(CartService $cart): Response
     {
         // Utilisez $cart pour supprimer le produit avec l'identifiant $id
 
@@ -51,7 +50,7 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart/delete/{id}', name: 'app_delete_cart')]
-    public function delete(Cart $cart, int $id): Response
+    public function delete(CartService $cart, int $id): Response
     {
         // Utilisez $cart pour supprimer le produit avec l'identifiant $id
 
@@ -61,7 +60,7 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart/decrease/{id}', name: 'app_decrease_cart')]
-    public function decrease(Cart $cart, int $id): Response
+    public function decrease(CartService $cart, int $id): Response
     {
         // Utilisez $cart pour diminuer le produit avec l'identifiant $id
 

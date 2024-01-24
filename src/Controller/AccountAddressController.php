@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Cart\Cart;
+use App\Service\CartService;
 use App\Entity\Address;
 use App\Form\AddressType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,8 +11,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ *
+ */
 class AccountAddressController extends AbstractController
 {
+    /**
+     * @var EntityManagerInterface
+     */
     private EntityManagerInterface $entityManager;
 
     /**
@@ -23,6 +29,9 @@ class AccountAddressController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * @return Response
+     */
     #[Route('/compte/addresses', name: 'app_account_address')]
     public function index(): Response
     {
@@ -31,31 +40,40 @@ class AccountAddressController extends AbstractController
         ]);
     }
 
+    /**
+     * @param CartService $cart
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/compte/ajouter-une-addresse', name: 'app_account_address_add')]
-    public function addAdress(Cart $cart, Request $request ): Response
+    public function addAdress(CartService $cart, Request $request ): Response
     {
         $address = new Address();
         $form = $this->createForm(AddressType::class, $address);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
-           $address->setUser($this->getUser());
-           $this->entityManager->persist($address);
-           $this->entityManager->flush();
-           if ($cart->get()){
-               return $this->redirectToRoute('app_order');
-           }else{
-            return $this->redirectToRoute('app_account_address');
-           }
+            $address->setUser($this->getUser());
+            $this->entityManager->persist($address);
+            $this->entityManager->flush();
+            if ($cart->get()){
+                return $this->redirectToRoute('app_order');
+            }else{
+                return $this->redirectToRoute('app_account_address');
+            }
 
         }
 
         return $this->render('account/address_form.html.twig', [
             'form' => $form->createView(),
-            'controller_name' => 'AccountAddressController',
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return Response
+     */
     #[Route('/compte/modifier-une-addresse/{id}', name: 'app_account_address_edit')]
     public function edit(Request $request, $id): Response
     {
@@ -79,6 +97,10 @@ class AccountAddressController extends AbstractController
         ]);
     }
 
+    /**
+     * @param $id
+     * @return Response
+     */
     #[Route('/compte/supprimer-une-addresse/{id}', name: 'app_account_address_delete')]
     public function delete($id): Response
     {
@@ -88,7 +110,7 @@ class AccountAddressController extends AbstractController
             $this->entityManager->flush();
         }
 
-            return $this->redirectToRoute('app_account_address');
-        }
+        return $this->redirectToRoute('app_account_address');
+    }
 
 }

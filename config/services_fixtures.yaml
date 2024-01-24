@@ -1,0 +1,13 @@
+# config/services_fixtures.yaml
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  App\DataFixtures\AdminFixtures:
+    arguments:
+      $manager: '@doctrine.orm.default_entity_manager'
+    tags:
+      - { name: 'doctrine.fixture.orm' }

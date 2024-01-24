@@ -1,10 +1,10 @@
-{# cart/index.html.twig #}
+
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <!-- Cart Page Start -->
+    <!-- CartService Page Start -->
     {% if cart | length > 0 %}
-    <div class="container-fluid py-5">
+    <div class="container-fluid d-grid min-vh-100 w-100 py-5">
         <div class="container py-5">
             <div class="table-responsive">
                 <table class="table">
@@ -89,7 +89,7 @@
                             <h5 class="mb-0 ps-4 me-4">Total</h5>
                             <p class="mb-0 pe-4">{{ totalCartPrice}} €</p>
                         </div>
-                        <a href=""
+                        <a href="{{ path('app_order') }}"
                            class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4">
                             Procéder au paiement
                         </a>
@@ -107,6 +107,6 @@
         </div>
     </div>
     {% endif %}
-    <!-- Cart Page End -->
+    <!-- CartService Page End -->
 
 {% endblock %}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Cart;
+namespace App\Service;
 
 use App\Entity\Product;
 
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 /**
  *
  */
-class Cart
+class CartService
 {
     private $session;
     private $entityManager;

@@ -1,25 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Mon compte - My French Epicery !
+    {% trans %}Mon compte - My French Epicery !{% endtrans %}
 {% endblock %}
 
 {% block content %}
-    <div class="container min-vh-100 mt-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="fw-bold">Bienvenue, {{ app.user.firstName }} !</h2>
-            <div class="d-grid gap-2 d-md-flex">
-                {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('/admin') }}" class="btn btn-primary me-md-2">Acceder au backoffice !</a>
-                {% endif %}
-                <a href="{{ path('app_change_password') }}" class="btn btn-primary me-md-2">Modifier mon mot de passe</a>
-                <a href="{{ path('app_account_address') }}" class="btn btn-secondary">Gérer mes adresses</a>
-                <!-- Ajoutez d'autres liens et fonctionnalités au besoin -->
-            </div>
-        </div>
+    <div class="container-fluid d-grid min-vh-100 w-75 mt-5">
+        <div class="card shadow p-4 rounded bg-light">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="fw-bold">Bienvenue, {{ app.user.firstName }}!</h2>
+                <div class="d-grid gap-2 d-md-flex">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_admin') }}" class="btn btn-primary btn-sm">Accéder au backoffice !</a>
+                    {% endif %}
+                    <a href="{{ path('app_change_password') }}" class="btn btn-primary btn-sm">
+                        {% trans %}Modifier mon mot de passe{% endtrans %}
+                    </a>
+                    <a href="{{ path('app_account_address') }}" class="btn btn-secondary">
+                        {% trans %}Gérer mes adresses{% endtrans %}
+                    </a>
 
-        <div>
-            <p class="lead">Découvrez votre espace My French Epicery et profitez de nos services.</p>
+                </div>
+            </div>
+
+            <div>
+                <p class="lead">{% trans %}Découvrez votre espace Ma French Epicerie et profitez de nos services.{% endtrans %}</p>
+            </div>
         </div>
     </div>
 {% endblock %}

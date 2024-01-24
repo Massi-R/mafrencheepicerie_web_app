@@ -50,16 +50,14 @@ class ChangePasswordType extends AbstractType
                 'mapped' => false,
                 'label' => 'Mon nouveau mot de passe',
                 'required' => true,
-                'attr' => [
-                    'class' => 'form-control'
-                ],
+                'options' => ['attr' => ['class' => 'form-control']],
                 'first_options'  => ['label' => 'Mon nouveau mot de passe'],
                 'second_options' => ['label' => 'Confirmez votre nouveau mot de passe'],
                 'invalid_message' => 'Les mots de passe ne correspondent pas'
             ])
 
             ->add('submit', SubmitType ::class, [
-                'label' => "S'inscrire"
+                'label' => "Valider"
             ]);
         ;
     }

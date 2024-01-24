@@ -17,6 +17,8 @@ class Product
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+    private string $slug;
+
 
     public function getId(): ?int
     {
@@ -61,7 +63,7 @@ class Product
         return $this;
     }
 
-   /* public function getSlug(): ?string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
@@ -71,10 +73,13 @@ class Product
         $this->slug = $slug;
 
         return $this;
-   }*/
+   }
 
     public function getIllustration(): ?string
     {
+        if (!$this->illustration){
+            return 'fruite-item-1.jpg';
+        }
         return $this->illustration;
     }
 
@@ -145,12 +150,12 @@ class Product
         return $this;
     }
 
-    public function setSlug(string $slugify): static
+   /* public function setSlug(string $slugify): static
     {
         $this->slug = $slugify;
 
         return $this;
-    }
+    }*/
 
     public function isIsBest(): ?bool
     {

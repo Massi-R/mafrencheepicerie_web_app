@@ -13,8 +13,16 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ *
+ */
 class AddressType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -48,7 +56,7 @@ class AddressType extends AbstractType
         ]
     ])
             ->add('address', TextType::class, [
-        'label' => 'Addresse?',
+        'label' => 'Adresse?',
         'attr' => [
             'placeholder' => '9 rue, André Darbon ...',
             'class' => 'form-control'
@@ -88,15 +96,13 @@ class AddressType extends AbstractType
                     'class' => 'btn btn-success btn-md mt-3'
                 ]
 
-            ])
-
-            //->add('user', EntityType::class, [
-                //'class' => User::class,
-//'choice_label' => 'id',
-            //])
-        ;
+            ]);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

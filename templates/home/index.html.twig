@@ -3,17 +3,26 @@
 
 
 {% block header %}
-    <!-- Header
+
     <header class="bg-warning py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">Vos course simplifiées </h1>
-                <p class="lead fw-normal text-black-50 text-capitalize shadow mb-0 bg-gradient">Avec My French Epicery !</p>
+                <p class="lead fw-normal text-black-50 text-capitalize shadow mb-0 bg-gradient">Avec Ma French Epicerie !</p>
             </div>
         </div>
-    </header>-->
+    </header>
 {% endblock %}
 {% block content %}
+<style>
+
+
+    .fruite-item p {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Nombre de lignes à afficher */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+</style>
     <!-- Section-->
     <div class="bg-gradient">
         <!-- Modal Search Start -->
@@ -165,7 +174,7 @@
                             </ul>
                         </div>
                     </div>
-
+               <!--Fruits start -->
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
@@ -193,10 +202,10 @@
                                         <div class="col-md-6 col-lg-4 col-xl-3">
                                             <div class="rounded position-relative fruite-item">
                                                 <div class="fruite-img">
-                                                    <img src="{{ asset('img/fruite-item-5.jpg') }}" class="img-fluid w-100 rounded-top" alt="">
+                                                    <img src="{{ asset('img/fruite-item-5.jpg') }}" class="img-fluid w-100 rounded-top product-image" alt="">
                                                 </div>
                                                 <!-- <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div> -->
-                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom product-info">
                                                     <h4>Raisins</h4>
                                                     <p>Plongez dans une expérience gustative exquise avec notre Raisin de Qualité Supérieure,
                                                         cultivé avec soin pour apporter à votre table le meilleur de la nature.
@@ -212,10 +221,10 @@
                                         <div class="col-md-6 col-lg-4 col-xl-3">
                                             <div class="rounded position-relative fruite-item">
                                                 <div class="fruite-img">
-                                                    <img src="{{ asset('img/fruite-item-2.jpg') }}" class="img-fluid w-100 rounded-top" alt="">
+                                                    <img src="{{ asset('img/fruite-item-2.jpg') }}" class="img-fluid w-100 rounded-top product-image" alt="">
                                                 </div>
                                                 <!-- <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div> -->
-                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom product-info">
                                                     <h4>Framboise</h4>
                                                     <p>Plongez dans l'expérience succulente de nos Framboises Fraîches, des baies d'une fraîcheur incomparable qui éveilleront vos papilles.
                                                         Cultivées avec soin, ces petites merveilles offrent une explosion de saveur à chaque dégustation.
@@ -558,7 +567,7 @@
 
 
         <!-- Banner Section Start-->
-        <div class="container-fluid banner bg-light my-5">
+        <div class="container-fluid banner bg-warning my-5">
             <div class="container py-5">
                 <div class="row g-4 align-items-center">
                     <div class="col-lg-6">

@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * Ce code définit un formulaire Symfony appelé RegisterType
@@ -31,22 +33,54 @@ class RegisterType extends AbstractType
         $builder
             ->add('firstName', TextType::class, [
                 'label' => 'Prénom',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a password',
+                    ]),
+                ],
 
                 'attr'=>['placeholder' => 'Prénom']
         ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a password',
+                    ]),
+                ],
 
                 'attr'=>['placeholder' => 'Nom']
         ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a password',
+                    ]),
+                ],
 
                 'attr'=>['placeholder' => 'Email']
         ])
             ->add('password', RepeatedType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a password',
+                    ]),
+                    new NotNull([
+                        'message' => 'Please enter a password',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 4096,
+                    ]),
+                ],
                 'label' => 'Mot de passe',
+                'required'=> true,
+                'error_bubbling' => true,
                 'type' => PasswordType::class,
+                'options' => ['attr' => ['class' => 'form-control']],
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmer le mot de passe'],
                 'invalid_message' => 'Les mots de passe ne correspondent pas'

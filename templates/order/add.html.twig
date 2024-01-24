@@ -50,7 +50,7 @@
                         <p>Total : {{ ((totalCartPrice) + carrier.price) | number_format(2, ',', '.') }} €</p>
                         </p>
                     </div>
-                        <a href="" class="btn btn-success btn-block mt-3">Payer {{ ((totalCartPrice) + carrier.price) | number_format(2, ',', '.') }} €</a>
+                        <a href="{{ path('app_order_finalize.html.twig') }}" class="btn btn-success btn-block mt-3">Payer {{ ((totalCartPrice) + carrier.price) | number_format(2, ',', '.') }} €</a>
                     </div>
                 </div>
             </div>

@@ -55,7 +55,7 @@
                 <li class="nav-item"><a class="nav-link active text-white" aria-current="page"
                                         href="{{ path('app_products') }}">Produits</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="#!">À propos</a></li>
-                <li class="nav-item dropdown">
+                <!--<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">Courses</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -64,7 +64,7 @@
                             <hr class="dropdown-divider text-dark"/>
                         </li>
                         <li><a class="dropdown-item text-dark" href="#!">Produits à succés</a></li>
-                        <li><a class="dropdown-item text-dark" href="#!">Nouveau stock</a></li>
+                        <li><a class="dropdown-item text-dark" href="#!">Nouveau stock</a></li>-->
                     </ul>
                 </li>
             </ul>
@@ -124,6 +124,17 @@
     <!-- Header-->
 {% endblock %}
 
+    {% for flash_message in app.flashes('success') %}
+        <div class="alert alert-success mb-4">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    {% for flash_message in app.flashes('danger') %}
+        <div class="alert alert-danger mb-4">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
 
 {% block content %}
     <!-- Section-->
@@ -160,7 +171,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="d-flex flex-column text-start footer-item">
                         <h4 class="text-light mb-3">Informations</h4>
-                        <a class="btn-link text-decoration-none" href="">À propos </a>
+                        <a class="btn-link text-decoration-none" href="{{ path('app_apropos') }}">À propos </a>
                         <a class="btn-link text-decoration-none" href="">Nous contacter</a>
                         <a class="btn-link text-decoration-none" href="">Politique de confidentialité</a>
                         <a class="btn-link text-decoration-none" href="">FAQs & Aide</a>
@@ -169,9 +180,9 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="d-flex flex-column text-start footer-item">
                         <h4 class="text-light mb-3">Comptes</h4>
-                        <a class="btn-link text-decoration-none" href="">Mon compte</a>
-                        <a class="btn-link text-decoration-none" href="">Détails de commandes</a>
-                        <a class="btn-link text-decoration-none" href="">Historique de commande</a>
+                        <a class="btn-link text-decoration-none" href="{{ path('app_account') }}">Mon compte</a>
+                        <a class="btn-link text-decoration-none" href="{{ path('app_order_finalize.html.twig') }}">Détails de commandes</a>
+                       <!-- <a class="btn-link text-decoration-none" href="">Historique de commande</a>-->
 
                     </div>
                 </div>

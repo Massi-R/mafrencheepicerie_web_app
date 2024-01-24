@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de commande</title>
+</head>
+<body>
+<h2>Merci pour votre commande!</h2>
+
+<p>Votre commande a été enregistrée avec succès. Voici les détails :</p>
+
+<h3>Informations sur la commande :</h3>
+<p><strong>ID de commande :</strong> {{ order.getId() }}</p>
+<p><strong>Date de commande :</strong> {{ order.getCreatedAt()|date('d/m/Y H:i') }}</p>
+<p><strong>Transporteur :</strong> {{ order.getCarrierName() }}</p>
+<p><strong>Frais de livraison :</strong> {{ order.getCarrierPrice() }} €</p>
+<p><strong>Adresse de livraison :</strong><br>{{ order.getDelivery() }}</p>
+
+<h3>Détails de la commande :</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Produit</th>
+        <th>Quantité</th>
+        <th>Prix unitaire</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for orderDetail in order.getOrderDetails() %}
+        <tr>
+            <td>{{ orderDetail.getProduct() }}</td>
+            <td>{{ orderDetail.getQuantity() }}</td>
+            <td>{{ orderDetail.getPrice() }} €</td>
+            <td>{{ orderDetail.getTotal() }} €</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h3>Total de la commande : {{ order.getTotal() }} €</h3>
+
+<p>Merci de votre confiance!</p>
+</body>
+</html>

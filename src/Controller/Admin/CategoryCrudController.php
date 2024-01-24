@@ -11,13 +11,23 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
+/**
+ *
+ */
 class CategoryCrudController extends AbstractCrudController
 {
+    /**
+     * @return string
+     */
     public static function getEntityFqcn(): string
     {
         return Category::class;
     }
 
+    /**
+     * @param string $pageName
+     * @return iterable
+     */
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -29,6 +39,11 @@ class CategoryCrudController extends AbstractCrudController
         ];
     }
 
+    /**
+     * @param EntityManagerInterface $em
+     * @param $entityInstance
+     * @return void
+     */
     public function persistEntity(EntityManagerInterface $em, $entityInstance): void
     {
         if (!$entityInstance instanceof Category) {
@@ -40,6 +55,11 @@ class CategoryCrudController extends AbstractCrudController
         parent::persistEntity($em, $entityInstance);
     }
 
+    /**
+     * @param EntityManagerInterface $em
+     * @param $entityInstance
+     * @return void
+     */
     public function deleteEntity(EntityManagerInterface $em, $entityInstance): void
     {
         if (!$entityInstance instanceof Category) {

@@ -16,11 +16,56 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProductRepository extends ServiceEntityRepository
 {
+    /**
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Product::class);
     }
 
+    /**
+     * @param int|null $categoryFilter
+     * @param float|null $priceFilter
+     * @return Product[]
+     */
+    public function findByFilters(?int $categoryFilter, ?float $priceFilter): array
+    {
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c');
+
+        if ($categoryFilter) {
+            $queryBuilder->andWhere('c.id = :categoryFilter')
+                ->setParameter('categoryFilter', $categoryFilter);
+        }
+
+        if ($priceFilter) {
+            $queryBuilder->andWhere('p.price <= :priceFilter')
+                ->setParameter('priceFilter', $priceFilter);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
+    /**
+     * @param int|string $id
+     * @return Product|null
+     */
+    public function findOneById(int|string $id)
+    {
+        return $this->findOneBy(['id' => $id]);
+    }
+
+    /**
+     * @param int $int
+     * @return Product[]
+     */
+    public function findByIsBest(int $int): array
+    {
+        return $this->findBy(['isBest' => $int]);
+    }
+}
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */
@@ -45,13 +90,3 @@ class ProductRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-    public function findOneById(int|string $id)
-    {
-        return $this->findOneBy(['id' => $id]);
-    }
-
-    public function findByIsBest(int $int)
-    {
-        return $this->findBy(['isBest' => $int]);
-    }
-}

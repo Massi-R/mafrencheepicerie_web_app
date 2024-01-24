@@ -5,11 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mt-5 min-vh-100 w-100">
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="card shadow p-4 rounded w-75">
         <h2 class="text-center mb-4">Ajouter une adresse</h2>
         <a href="{{ path('app_account_address') }}" class="d-block mb-4">&lt; Retour</a>
 
         <form action="{{ path('app_account_address_add') }}" method="post" class="row g-3">
+            {{ form_widget(form._token) }}
+
             <div class="col-md-6">
                 {{ form_row(form.firstname, {'label': 'Prénom', 'attr': {'class': 'form-control mb-3'}}) }}
                 {{ form_row(form.lastname, {'label': 'Nom', 'attr': {'class': 'form-control mb-3'}}) }}
@@ -35,8 +38,9 @@
             </div>
 
             <div class="col-12">
-                {{ form_row(form.submit, {'label': 'Ajouter l\'adresse', 'attr': {'class': 'btn btn-primary'}}) }}
+                {{ form_row(form.submit, { 'attr': {'class': 'btn btn-primary rounded-pill'}}) }}
             </div>
         </form>
     </div>
+</div>
 {% endblock %}
