@@ -1,4 +1,7 @@
 <?php
+/**
+ * Ce fichier contient le contrôleur ShowController.
+ */
 
 namespace App\Controller;
 
@@ -8,6 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Le contrôleur ShowController affiche les détails d'un produit.
+ */
 class ShowController extends AbstractController
 {
     private EntityManagerInterface $entityManager;

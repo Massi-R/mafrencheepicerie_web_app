@@ -82,29 +82,29 @@ class OrderController extends AbstractController
     #[Route('/commande/recapitulatif', name: 'app_order_recap')]
     public function add(CartService $cart, Request $request): Response
     {
-// Crée le formulaire de commande en
+       // Crée le formulaire de commande en
         $form = $this->createForm(OrderType::class, null, [
             'user' => $this->getUser(),
         ]);
 
         $carriers = null;
         $form->handleRequest($request);
-// Vérifie si le formulaire a été soumi
+        // Vérifie si le formulaire a été soumi
         if ($form->isSubmitted() && $form->isValid()) {
-// Récupère la date actuelle
+           // Récupère la date actuelle
             $date = new DateTime();
-// Récupère le transporteur sélectionné dans le formulaire
+           // Récupère le transporteur sélectionné dans le formulaire
             $carriers = $form->get('carriers')->getData();
-// Récupère l'adresse de livraison sélectionnée dans le formulaire
+           // Récupère l'adresse de livraison sélectionnée dans le formulaire
             $delivery = $form->get('addresses')->getData();
             $delivery_content = $delivery->getFirstname().' '.$delivery->getLastname();
-            $delivery_content.='<br>'.$delivery->getPhone();
-                        // Ajoute le nom de la société si elle est renseignée
+            $delivery_content.=''.$delivery->getPhone();
+            // Ajoute le nom de la société si elle est renseignée
 
             if ($delivery->getCompany()){
                 $delivery_content.='<br>'.$delivery->getCompany();
             }
-            $delivery_content.='<br>'.$delivery->getAddress();
+            $delivery_content.=''.$delivery->getAddress();
             $delivery_content.='<br>'.$delivery->getPostal().' '.$delivery->getCity();
             $delivery_content.='<br>'.$delivery->getCountry();
 
@@ -132,6 +132,10 @@ class OrderController extends AbstractController
             }
             // Enregistrez les modifications en base de données
             $this->entityManager->flush();
+            // Réinitialisez le panier après une commande réussie
+           // $cart->clearCart();
+
+
 
             // Envoyez un e-mail de confirmation à l'utilisateur
            // $this->sendOrderConfirmationEmail($order);

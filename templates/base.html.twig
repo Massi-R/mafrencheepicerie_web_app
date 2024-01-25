@@ -43,18 +43,18 @@
 
 
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+<nav class="navbar navbar-expand-lg navbar-warning bg-warning text-black">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand text-white" href="{{ path('app_home') }}">Ma French Epicerie</a>
-        <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        <a class="navbar-brand text-dark fs-3" href="{{ path('app_home') }}">Ma French Epicerie</a>
+        <button class="navbar-toggler bg-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active text-white" aria-current="page"
+                <li class="nav-item"><a class="nav-link active text-dark fs-5" aria-current="page"
                                         href="{{ path('app_products') }}">Produits</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="#!">À propos</a></li>
+                <li class="nav-item"><a class="nav-link text-dark fs-5" href="{{ path('app_apropos') }}">À propos</a></li>
                 <!--<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">Courses</a>
@@ -72,15 +72,15 @@
             {% if app.user %}
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ path('app_account') }}">
-                            Mon compte <small>  ({{ app.user.firstName }}) </small>
+                        <a class="nav-link text-dark fs-5" href="{{ path('app_account') }}">
+                            Bienvenue  <small class="text-bg-info">  ({{ app.user.firstName }}) </small>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <span class="nav-link text-white">|</span>
+                        <span class="nav-link text-dark">|</span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ path('app_logout') }}">
+                        <a class="nav-link text-dark fs-5" href="{{ path('app_logout') }}">
                             Déconnexion
                         </a>
                     </li>
@@ -88,7 +88,7 @@
             {% else %}
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ path('app_login') }}">
+                        <a class="nav-link text-dark fs-5" href="{{ path('app_login') }}">
                             Connexion
                         </a>
                     </li>
@@ -96,7 +96,7 @@
                         <span class="nav-link text-white">|</span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ path('app_register') }}">
+                        <a class="nav-link text-dark fs-5" href="{{ path('app_register') }}">
                             S'enregistrer
                         </a>
                     </li>
@@ -105,11 +105,8 @@
             <form class="d-flex">
                 {% if app.request.attributes.get('_route') == 'app_home' %}
                     <a href="{{ path('app_cart') }}">
-                        <i class="bi-cart-fill me-1 text-white fa fa-shopping-bag"></i>
+                        <i class="bi-cart-fill me-1 text-dark fa fa-shopping-bag fs-2"></i>
                     </a>
-
-                        <span class="badge bg-white text-dark ms-1 rounded-pill"></span>
-                    </button>
                 {% endif %}
             </form>
 
@@ -164,7 +161,7 @@
                             Avec la garantie de produits de qualité, un assortiment diversifié répondant à tous les
                             goûts,
                             et un service attentionné, chaque visite devient une aventure culinaire inoubliable.</p>
-                        <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-warning">En apprendre
+                        <a href="{{ path('app_apropos') }}" class="btn border-secondary py-2 px-4 rounded-pill text-warning">En apprendre
                             plus</a>
                     </div>
                 </div>
@@ -173,8 +170,8 @@
                         <h4 class="text-light mb-3">Informations</h4>
                         <a class="btn-link text-decoration-none" href="{{ path('app_apropos') }}">À propos </a>
                         <a class="btn-link text-decoration-none" href="">Nous contacter</a>
-                        <a class="btn-link text-decoration-none" href="">Politique de confidentialité</a>
-                        <a class="btn-link text-decoration-none" href="">FAQs & Aide</a>
+                       <!-- <a class="btn-link text-decoration-none" href="">Politique de confidentialité</a>
+                        <a class="btn-link text-decoration-none" href="">FAQs & Aide</a>-->
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">

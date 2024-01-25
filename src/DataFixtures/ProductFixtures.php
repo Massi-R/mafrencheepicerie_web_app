@@ -32,13 +32,13 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'Pomme Gala',
                 'subtitle' => 'Pommes fraîches de saison',
                 'description' => 'Les pommes Gala sont délicieusement sucrées et croustillantes. Parfaites pour une collation saine ou pour accompagner votre dessert préféré.',
-                'image' => 'apple.jpg',
+                'image' => 'https://leptitjany.fr/1945-large_default/pomme-grany-smith-150-170-france-hve-cat-1.jpg',
             ],
             [
                 'name' => 'Brocoli Bio',
                 'subtitle' => 'Brocoli frais et biologique',
                 'description' => 'Le brocoli bio est riche en nutriments et est cultivé de manière durable. Un excellent choix pour vos plats cuisinés.',
-                'image' => 'broccoli.jpg',
+                'image' => 'https://leptitjany.fr/1944-large_default/brocoli-au-kg-esp.jpg',
             ],
             [
                 'name' => 'Filet de Boeuf Angus',
@@ -50,13 +50,13 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'Poire Conférence',
                 'subtitle' => 'Poires juteuses et sucrées',
                 'description' => 'La poire Conférence est célèbre pour sa chair juteuse et son goût sucré. Idéale pour les collations et les desserts.',
-                'image' => 'pear.jpg',
+                'image' => 'https://leptitjany.fr/1925-large_default/poire-passe-crassane-fr.jpg',
             ],
             [
                 'name' => 'Carottes Bio',
                 'subtitle' => 'Carottes fraîches et biologiques',
                 'description' => 'Nos carottes biologiques sont cultivées avec soin pour une saveur optimale. Parfaites pour la cuisine quotidienne.',
-                'image' => 'carrot.jpg',
+                'image' => 'https://leptitjany.fr/2191-large_default/carotte-de-l-ain-le-kg-france.jpg',
             ],
             [
                 'name' => 'Yaourt Grec Nature',
@@ -68,7 +68,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'Brocoli Frais',
                 'subtitle' => 'Brocoli cultivé localement',
                 'description' => 'Notre brocoli frais est cultivé localement pour garantir la fraîcheur et la saveur. Idéal pour accompagner de nombreux plats.',
-                'image' => 'broccoli.jpg',
+                'image' => 'https://leptitjany.fr/1944-large_default/brocoli-au-kg-esp.jpg',
             ],
             [
                 'name' => 'Filet de Bœuf Angus',
@@ -103,24 +103,9 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
                 $product->setPrice(number_format(rand(100, 999) / 100, 2));
                 $product->setCategory($category);
 
-
-
-                // Chemin du répertoire des images
-                //$imageDirectory = $this->parameterBag->get('kernel.project_dir') . '/public/uploads';
-                // Obtenez la liste des fichiers dans le répertoire des images
-               // $images = scandir($imageDirectory);
-               // Supprimez les entrées spéciales '.' et '..'
-               // $images = array_diff($images, ['.', '..']);
-              // Choisissez un fichier au hasard parmi la liste de fichiers
-                //$randomImage = $images[array_rand($images)];
-              // Utilisez le nom du fichier choisi comme illustration
-                //$product->setIllustration($randomImage);
-
-
                 $manager->persist($product);
             }
         }
-
         $manager->flush();
     }
 

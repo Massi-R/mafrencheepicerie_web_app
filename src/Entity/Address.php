@@ -277,6 +277,21 @@ class Address
 
         return $this;
     }
+    // ...
+
+    public function getFormattedAddress(): string
+    {
+        return sprintf('%s %s %s %s %s %s %s',
+            $this->getFirstname(),
+            $this->getLastname(),
+            $this->getCompany() ? $this->getCompany() : '',
+            $this->getAddress(),
+            $this->getPostal(),
+            $this->getCity(),
+            $this->getCountry()
+        );
+    }
+
 
     /**
      * @return string

@@ -50,6 +50,7 @@ class CartService
     }
 
 
+
     public function add($id): void
     {
         $cart = $this->session->get('cart', []);
@@ -67,6 +68,13 @@ class CartService
 
     }
 
+    /**
+     * Réinitialise le panier après une commande réussie.
+     */
+    public function clearCart(): void
+    {
+        $this->session->set('cart', []);
+    }
     public function get()
     {
         return $this->session->get('cart', []);

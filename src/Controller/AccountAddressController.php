@@ -28,7 +28,6 @@ class AccountAddressController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
-
     /**
      * @return Response
      */
@@ -39,7 +38,6 @@ class AccountAddressController extends AbstractController
             'controller_name' => 'AccountAddressController',
         ]);
     }
-
     /**
      * @param CartService $cart
      * @param Request $request
@@ -61,14 +59,11 @@ class AccountAddressController extends AbstractController
             }else{
                 return $this->redirectToRoute('app_account_address');
             }
-
         }
-
         return $this->render('account/address_form.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @param Request $request
      * @param $id
@@ -96,7 +91,6 @@ class AccountAddressController extends AbstractController
             'controller_name' => 'AccountAddressController',
         ]);
     }
-
     /**
      * @param $id
      * @return Response
@@ -109,8 +103,6 @@ class AccountAddressController extends AbstractController
             $this->entityManager->remove($address);
             $this->entityManager->flush();
         }
-
         return $this->redirectToRoute('app_account_address');
     }
-
 }
