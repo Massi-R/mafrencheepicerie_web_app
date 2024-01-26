@@ -27,7 +27,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @var string The hashed password
-     * @Assert\Length(min=1, message="Le mot de passe ne peut pas être vide.")
+     * @Assert\Length(min=7, message="Le mot de passe ne peut pas être vide et doit contenir au moins 8 caractères")
      */
     #[ORM\Column]
 
@@ -224,4 +224,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
 }

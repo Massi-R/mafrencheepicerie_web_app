@@ -35,8 +35,9 @@ class CartController extends AbstractController
     {
         // Utilisez $cart pour ajouter le produit avec l'identifiant $id
         $cart->add($id);
+        $this->addFlash('success', 'Produit ajouté ! Consulter votre panier');
 
-        return $this->redirectToRoute('app_cart');
+        return $this->redirectToRoute('app_products');
     }
 
     #[Route('/cart/remove/{id}', name: 'app_remove_cart')]
@@ -45,6 +46,8 @@ class CartController extends AbstractController
         // Utilisez $cart pour supprimer le produit avec l'identifiant $id
 
         $cart->remove();
+
+        $this->addFlash('success', 'Produit supprimé du panier');
 
         return $this->redirectToRoute('app_products');
     }
@@ -55,6 +58,8 @@ class CartController extends AbstractController
         // Utilisez $cart pour supprimer le produit avec l'identifiant $id
 
         $cart->delete($id);
+
+        $this->addFlash('success', 'Produit supprimé du panier');
 
         return $this->redirectToRoute('app_cart');
     }

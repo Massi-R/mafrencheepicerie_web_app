@@ -11,13 +11,13 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
- * Ce code définit un formulaire Symfony appelé RegisterType
- * qui est associé à l'entité User.
+ * Ce code définit un formulaire Symfony appelé RegisterType qui est associé à l'entité User.
  * Le formulaire contient des champs pour le prénom, le nom, l'e-mail et le mot de passe.
  * Les types de champ utilisés sont fournis par le composant Form de Symfony.
  * Chaque champ a une étiquette label et un attribut de placeholder pour améliorer l'expérience utilisateur.
@@ -35,7 +35,7 @@ class RegisterType extends AbstractType
                 'label' => 'Prénom',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez saisir votre prénom',
                     ]),
                 ],
 
@@ -45,7 +45,7 @@ class RegisterType extends AbstractType
                 'label' => 'Nom',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez saisir votre nom',
                     ]),
                 ],
 
@@ -55,25 +55,26 @@ class RegisterType extends AbstractType
                 'label' => 'Email',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer une adresse e-mail',
+                    ]),
+                    new Email([
+                        'message' => 'Veuillez entrer une adresse e-mail valide',
                     ]),
                 ],
-
                 'attr'=>['placeholder' => 'Email']
-        ])
+            ])
             ->add('password', RepeatedType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez saisir un mots de passe valide',
                     ]),
                     new NotNull([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez saisir un mots de passe valide',
                     ]),
                     new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'min' => 8,
+                        'minMessage' => 'Votre mots de passe doit contenir au minimum 8 caractères',
+                        'max' => 30,
                     ]),
                 ],
                 'label' => 'Mot de passe',
@@ -82,7 +83,7 @@ class RegisterType extends AbstractType
                 'type' => PasswordType::class,
                 'options' => ['attr' => ['class' => 'form-control']],
                 'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer le mot de passe'],
+                'second_options' => ['label' => 'Confirmez le mot de passe'],
                 'invalid_message' => 'Les mots de passe ne correspondent pas'
         ])
 

@@ -77,6 +77,13 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
                 'image' => 'beef.jpg',
             ],
             [
+                'name' => 'Tomates cerises bio',
+                'subtitle' => 'Tomates cerises cultivées biologiquement',
+                'description' => 'Les tomates cerises bio sont juteuses et sucrées, parfaites pour agrémenter vos salades ou comme en-cas sain.',
+                'image' => 'https://via.placeholder.com/300',
+            ],
+
+            [
                 'name' => 'Saumon Sauvage',
                 'subtitle' => 'Saumon pêché de manière durable',
                 'description' => 'Notre saumon sauvage est pêché de manière durable, offrant une option saine et délicieuse. Parfait pour les repas légers.',

@@ -12,12 +12,12 @@
         }
 
         .product-info {
-            min-height: 290px; /* Ajoutez une hauteur minimale pour la div parente */
+            min-height: 290px; /* Ajout d'une hauteur minimale pour la div parente */
         }
 
 
         .fruite-item {
-            height: 600px; /* Ajustez la hauteur maximale selon vos besoins */
+            height: 600px; /* Ajust d'une hauteur maximale */
             overflow: hidden;
             position: relative;
         }
@@ -30,23 +30,43 @@
 
         }
     </style>
+
     <div class="tab-content">
-        <h1 class="text-center m-5 p-3">Nos produits frais</h1>
+        <h1 class="text-center display-5 font-weight-bold mt-5 mb-4">Nos Produits Frais</h1>
+
         <div class="container">
+            <div class="row-cols-6">
+                <form method="get" action="{{ path('app_products') }}" class="form-inline">
+                    <label for="category" class="mr-2">Filtrer par catégorie :</label>
+                    <select name="category" id="category" class="form-control form-control-sm-2">
+                        <option value="">Toutes les catégories</option>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}" {% if category.id == selectedCategory %}selected{% endif %}>
+                                {{ category.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-success btn-sm">Rechercher</button>
+                </form>
+            </div>
+
+
+
+            <div class="container mt-5">
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
                     {% for product in products %}
                         <div class="col-md-6 col-lg-3">
                             <div class="rounded position-relative fruite-item">
                                 <div class="fruite-img">
-                                    <img src="{{ product.illustration }}" alt="{{ product.name }}"
+                                    <img src="{{ asset('uploads/best-product-4.jpg') }}" alt="{{ product.name }}"
                                          class="img-fluid w-100 h-100 rounded-top product-image">
                                 </div>
                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom product-info">
                                     <h4 style="min-height: 56px">{{ product.name }}</h4>
                                     <p>{{ product.description }}</p>
                                     <div class="d-flex justify-content-between flex-lg-wrap">
-                                        <p class="text-dark fs-5 fw-bold mb-0">{{ product.price}} €/ kg</p>
+                                        <p class="text-dark fs-5 fw-bold mb-0">{{ product.price }} €/ kg</p>
                                         <a href="{{ path('app_add_cart', {'id': product.id}) }}"
                                            class="btn border border-secondary rounded-pill px-3 bg-success text-white">
                                             <i class="bi-cart-fill me-1 text-white fa fa-shopping-bag m-1"></i>
@@ -58,8 +78,8 @@
                     {% endfor %}
                 </div>
             </div>
+            </div>
         </div>
     </div>
-
 
 {% endblock %}

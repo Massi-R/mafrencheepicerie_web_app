@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\AddressRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  *
@@ -53,12 +55,15 @@ class Address
     /**
      * @var string|null
      */
+
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
     /**
      * @var string|null
      */
+
+
     #[ORM\Column(length: 255)]
     private ?string $postal = null;
 
@@ -75,8 +80,12 @@ class Address
     private ?string $country = null;
 
     /**
+     *  #[Assert\Type(type: ['alpha', 'digit'])]
+     *
+     *
      * @var string|null
      */
+    #[Assert\Type(type: ['alpha', 'digit'])]
     #[ORM\Column(length: 255)]
     private ?string $phone = null;
 
@@ -205,6 +214,8 @@ class Address
     /**
      * @return string|null
      */
+    #[Assert\NotBlank(message: "Le code postal ne peut pas être vide.")]
+    #[Assert\Regex(pattern: "/^\d{5}$/", message: "Le code postal doit contenir 5 chiffres.")]
     public function getPostal(): ?string
     {
         return $this->postal;
@@ -214,12 +225,15 @@ class Address
      * @param string $postal
      * @return $this
      */
+
     public function setPostal(string $postal): static
     {
         $this->postal = $postal;
 
         return $this;
     }
+
+
 
     /**
      * @return string|null
@@ -270,6 +284,8 @@ class Address
     /**
      * @param string $phone
      * @return $this
+     * #[Assert\Type(type: ['alpha', 'digit'])]
+     * #[Assert\Regex('/^\d+$/')]
      */
     public function setPhone(string $phone): static
     {

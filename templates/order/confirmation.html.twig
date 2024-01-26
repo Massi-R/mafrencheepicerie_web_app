@@ -15,7 +15,8 @@
             <p><strong>Date de commande :</strong> {{ order.getCreatedAt()|date('d/m/Y H:i') }}</p>
             <p><strong>Transporteur :</strong> {{ order.getCarrierName() }}</p>
             <p><strong>Frais de livraison :</strong> {{ order.getCarrierPrice() }} €</p>
-            <p><strong>Adresse de livraison :</strong><br>{{ order.getDelivery() }}</p>
+            <p><strong>Adresse de livraison :</strong><br>{{ order.getDelivery()|replace({'<br>': ' '}) }}</p>
+
 
             <h3>Détails de la commande :</h3>
             <table class="table">

@@ -14,6 +14,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegisterType;
 use App\Security\LoginFormAuthenticator;
+use App\Service\EmailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,9 +26,12 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class RegisterController extends AbstractController
 {
     private EntityManagerInterface $entityManager;
-    public function __construct(EntityManagerInterface $entityManager)
+    private EmailService $emailService;
+
+    public function __construct(EntityManagerInterface $entityManager,  EmailService $emailService)
     {
         $this->entityManager = $entityManager;
+        $this->emailService = $emailService;
     }
 
     /**
@@ -57,7 +61,9 @@ class RegisterController extends AbstractController
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            $this->addFlash('success', 'Inscription réussie. Connectez-vous maintenant.');
+
+
+            $this->addFlash('success', 'Inscription réussie. Bienvenue');
 
             return $userAuthenticator->authenticateUser(
                 $user,

@@ -103,7 +103,7 @@
                 </ul>
             {% endif %}
             <form class="d-flex">
-                {% if app.request.attributes.get('_route') == 'app_home' %}
+                {% if app.request.attributes.get('_route') == 'app_home' or app.request.attributes.get('_route') == 'app_products' %}
                     <a href="{{ path('app_cart') }}">
                         <i class="bi-cart-fill me-1 text-dark fa fa-shopping-bag fs-2"></i>
                     </a>
@@ -135,6 +135,8 @@
 
 {% block content %}
     <!-- Section-->
+    {% block javascript %}
+    {% endblock %}
 {% endblock %}
 
 {% block footer %}

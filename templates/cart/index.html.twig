@@ -5,6 +5,7 @@
     <!-- CartService Page Start -->
     {% if cart | length > 0 %}
     <div class="container-fluid d-grid min-vh-100 w-100 py-5">
+        <a href="{{ path('app_products') }}">Retour</a>
         <div class="container py-5">
             <div class="table-responsive">
                 <table class="table">
@@ -80,7 +81,7 @@
                             <div class="d-flex justify-content-between">
                                 <h5 class="mb-0 me-4">Livraison :</h5>
                                 <div class="">
-                                    <p class="mb-0">Gratuite</p>
+                                    <p class="mb-0"><small>Le choix se fera à l'étape suivante</small></p>
                                 </div>
                             </div>
                             <p class="mb-0 text-end"></p>

@@ -81,14 +81,19 @@ class AccountAddressController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->entityManager->flush();
-
-            return $this->redirectToRoute('app_account_address');
+            try {
+                $this->entityManager->flush();
+                // Ajout d'un message de succès
+                $this->addFlash('success', 'Adresse mise à jour avec succès.');
+                return $this->redirectToRoute('app_account_address');
+            } catch (\Exception $e) {
+                // afficher l'erreur
+                $this->addFlash('error', "Erreur lors de la mise à jour de l'adresse  ");
+            }
         }
 
         return $this->render('account/address_form.html.twig', [
             'form' => $form->createView(),
-            'controller_name' => 'AccountAddressController',
         ]);
     }
     /**
@@ -102,6 +107,9 @@ class AccountAddressController extends AbstractController
         if ($address && $address->getUser() == $this->getUser()){
             $this->entityManager->remove($address);
             $this->entityManager->flush();
+
+            //afficher un message:
+            $this->addFlash('success', 'Adresse supprimée avec succès.');
         }
         return $this->redirectToRoute('app_account_address');
     }

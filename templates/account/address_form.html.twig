@@ -4,13 +4,14 @@
     Gérer mes adresses - Ma French Epicerie !
 {% endblock %}
 
+
 {% block content %}
 <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
     <div class="card shadow p-4 rounded w-75">
         <h2 class="text-center mb-4">Ajouter une adresse</h2>
         <a href="{{ path('app_account_address') }}" class="d-block mb-4">&lt; Retour</a>
 
-        <form action="{{ path('app_account_address_add') }}" method="post" class="row g-3">
+        <form action="{{ path('app_account_address_add') }}" method="post" class="row g-3" novalidate="novalidate">
             {{ form_widget(form._token) }}
 
             <div class="col-md-6">
@@ -34,7 +35,7 @@
                 {{ form_row(form.country, {'label': 'Pays', 'attr': {'class': 'form-control mb-3'}}) }}
             </div>
             <div class="col-12">
-                {{ form_row(form.phone, {'label': 'Numéro de téléphone', 'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(form.phone, {'label': 'Numéro de téléphone', 'attr': {'class': 'form-control mb-3',  'value': '+33 ' ~ form.vars.value.phone|default('') }}) }}
             </div>
 
             <div class="col-12">
@@ -43,4 +44,25 @@
         </form>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var postalCodeField = document.getElementById('address_postal');
+
+        var phoneField = document.getElementById('address_phone');
+
+        postalCodeField.addEventListener('input', function(event) {
+            // Remplace toutes les occurrences de caractères non numériques par une chaîne vide
+            event.target.value = event.target.value.replace(/\D/g, '');
+        });
+
+        // Ajouter un événement pour le champ de téléphone
+        phoneField.addEventListener('input', function(event) {
+            // Remplacer toutes les occurrences de caractères non numériques par une chaîne vide
+            event.target.value = event.target.value.replace(/\D/g, '');
+        });
+    });
+</script>
 {% endblock %}
+
+

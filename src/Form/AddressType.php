@@ -12,6 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Type;
 
 /**
  *
@@ -63,6 +66,15 @@ class AddressType extends AbstractType
         ]
     ])
             ->add('postal', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer un code postal',
+                    ]),
+                    new Regex([
+                        'pattern' => '/^\d+$/',
+                        'message' => 'Veuillez entrer un code postal valide (5 chiffres)',
+                    ]),
+                ],
         'label' => 'Code postal',
         'attr' => [
             'placeholder' => 'Votre code postal',
@@ -84,10 +96,20 @@ class AddressType extends AbstractType
         ]
     ])
             ->add('phone', TelType::class, [
-        'label' => 'Numéro de téléphone',
-        'attr' => [
-            'placeholder' => 'Votre numéro de téléphone',
-            'class' => 'form-control'
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer un numéro de téléphone',
+                    ]),
+
+                    new Regex([
+                        'pattern' => '/^\d+$/',
+                        'message' => 'Veuillez entrer un numéro de téléphone valide (chiffres uniquement)',
+                    ]),
+                ],
+                          'label' => 'Numéro de téléphone',
+                           'attr' => [
+                    'placeholder' => 'Votre numéro de téléphone',
+                          'class' => 'form-control'
         ]
     ])
             ->add('submit', SubmitType::class, [
